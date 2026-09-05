@@ -1,0 +1,7 @@
+# dsh-composer-upload bundle patch (applied when this plugin joins a profile's
+# bundles list). Registers the host-side plugin row so its node apply() runs
+# (guarded POST /api/_upload endpoint); the client half is discovered through
+# the package's dsh.client declaration and served at /plugins/<id>/client.js.
+- insert:
+    - id: dsh-composer-upload
+      name: dsh-composer-upload

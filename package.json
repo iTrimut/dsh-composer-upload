@@ -1,0 +1,56 @@
+{
+  "name": "dsh-composer-upload",
+  "version": "0.1.0",
+  "description": "DSH Web chat composer toolkit (profile client+host plugin, survives dsh upgrades): paperclip upload (images into the draft pipeline; generic files into the fixed global <cwd>/.dsh-uploads with content dedupe, shown as a single file name in the bubble) and a silent Continue/wake button (goal resume or /api/_wake) — no chat text added. MIT.",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cordis",
+    "plugin",
+    "chat",
+    "upload",
+    "attachment"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": "./client/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/**/*.js",
+    "client/**/*.js",
+    "test/**/*.cjs",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/smoke.cjs",
+    "prepack": "node test/smoke.cjs",
+    "pack:dry": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {},
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  }
+}
